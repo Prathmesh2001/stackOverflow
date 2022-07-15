@@ -4,9 +4,9 @@ import React from 'react'
 import {
   BrowserRouter,
   Routes,
-  Route, Link
+  Route,
 } from 'react-router-dom';
-import ChangeText from './components/ChangeText';
+import Navbar from './components/Navbar';
 import ToDo from './components/ToDo';
 import Login from './components/Login';
 
@@ -17,16 +17,10 @@ function App() {
       <div className="App">
         
           <BrowserRouter>
-
-            <nav>
-              <Link to="" className='text-dark mx-3'>Texty</Link>
-              <Link to="/toDo" className='text-dark mx-3'>To Do</Link>
-            </nav>
-
+           <Navbar/>
             <Routes>
-              <Route path="" element={<ChangeText />} />
               <Route path="/toDo" element={<ToDo />} />
-              <Route path="login" element={<Login/>} />
+              <Route path="" element={<Login/>} />
             </Routes>
           </BrowserRouter>
 

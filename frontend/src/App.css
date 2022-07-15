@@ -62,8 +62,12 @@ label:focus,
   min-height: 97vh;
 }
 .to-do .card{
-  width: 25rem;
+  /* width: 25rem; */
   border: none;
+}
+.to-do .container{
+  max-width: 1200px;
+  width: 1200px;
 }
 
 /* .login{

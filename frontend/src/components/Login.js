@@ -29,6 +29,25 @@ function Login() {
             setValidationMsg({ status: "true", msg: "Password and Confirm Password did not match", type: "Danger" })
         }
         else{
+            setValidationMsg({ status: "true", msg: "Registered Successfully", type: "Success" })
+            navigate('/')
+        }
+        document.getElementById('register-form').reset()
+    }
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault()
+        const data = new FormData(e.currentTarget)
+        const actualData = {
+            email: data.get('email'),
+            password: data.get('password'),
+        }
+        console.log(actualData);
+
+        if (actualData.password !== 'pass' && actualData.email !== 'yash@gmail.com') {
+            setValidationMsg({ status: "true", msg: "Invalid Email or Password", type: "Danger" })
+        }
+        else{
             setValidationMsg({ status: "true", msg: "Login Successful", type: "Success" })
             navigate('/')
         }
@@ -57,12 +76,16 @@ function Login() {
                             <h2>Login</h2>
                         </div>
                         <div className="card-body">
-                            <form className='p-4' action="">
-                                <input type="email" className='form-control my-3' placeholder='Enter Email' />
-                                <input type="password" className='form-control my-3' placeholder='Enter Password' />
+                            <form className='p-4' onSubmit={handleSubmitLogin}>
+                                <input type="email" className='form-control my-3' placeholder='Enter Email' required/>
+                                <input type="password" className='form-control my-3' placeholder='Enter Password' required/>
+
+                                <div className='validationMsg mb-2' style={{height:"1rem"}}>
+                                    {validationMsg.status ?<Validation/>:""}
+                                </div>
 
                                 <div className="my-3">
-                                    <button className='btn btn-primary form-control my-4'>Login</button>
+                                    <button type='submit' className='btn btn-primary form-control my-4'>Login</button>
                                     <p className='text-dark text-center'>
                                         Don't have an account?
                                         <span onClick={() => setOverlaySide("-50%")}><strong> Register</strong></span>
